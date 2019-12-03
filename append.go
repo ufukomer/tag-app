@@ -4,10 +4,17 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
 )
+
+var logger *log.Logger
+
+func init() {
+	logger = log.New(os.Stdout, "", 0)
+}
 
 func appendTags(root, tags, suffix string) error {
 	err := filepath.Walk(root, func(path string, fi os.FileInfo, err error) error {
@@ -45,6 +52,8 @@ func appendTags(root, tags, suffix string) error {
 		}
 
 		_, err = io.Copy(file, strings.NewReader(strings.Join(lines, "\n")))
+		logger.Print(file.Name(), " => ", firstLine)
+
 		return err
 	})
 
