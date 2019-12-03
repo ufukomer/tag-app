@@ -73,14 +73,17 @@ func TestAppendTags(t *testing.T) {
 
 	lines := readContent(t, suffolkPath)
 	base := filepath.Base(suffolkPath)
-	if length := len(lines); length != 17 {
-		t.Errorf("Lenght of file (%v) is incorrect got: %v want: %v", base, length, 17)
+	if length := len(lines); length != 18 {
+		t.Errorf("Lenght of file (%v) is incorrect got: %v want: %v", base, length, 18)
 	}
 	if firstLine := lines[0]; firstLine != "// +build all suffolk !king !queen" {
 		t.Errorf("First line of file (%v) is incorrect got: %v want: %v", base, firstLine, "// +build all suffolk !king !queen")
 	}
-	if secondLine := lines[1]; secondLine != "As by your high imperial majesty" {
-		t.Errorf("Second line of file (%v) is incorrect got: %v want: %v", base, secondLine, "As by your high imperial majesty")
+	if secondLine := lines[1]; secondLine != "" {
+		t.Errorf("Second line of file (%v) is incorrect got: %v want: %v", base, secondLine, "")
+	}
+	if thirdLine := lines[2]; thirdLine != "As by your high imperial majesty" {
+		t.Errorf("Third line of file (%v) is incorrect got: %v want: %v", base, thirdLine, "As by your high imperial majesty")
 	}
 	if lastLine := lines[len(lines)-1]; lastLine != "The fairest queen that ever king received." {
 		t.Errorf("Last line of file (%v) is incorrect got: %v want: %v", base, lastLine, "The fairest queen that ever king received.")
@@ -88,14 +91,17 @@ func TestAppendTags(t *testing.T) {
 
 	lines = readContent(t, kingPath)
 	base = filepath.Base(kingPath)
-	if length := len(lines); length != 8 {
-		t.Errorf("Lenght of file (%v) is incorrect got: %v want: %v", base, length, 8)
+	if length := len(lines); length != 9 {
+		t.Errorf("Lenght of file (%v) is incorrect got: %v want: %v", base, length, 9)
 	}
 	if firstLine := lines[0]; firstLine != "// +build all suffolk !king !queen" {
 		t.Errorf("First line of file (%v) is incorrect got: %v want: %v", base, firstLine, "// +build all suffolk !king !queen")
 	}
-	if secondLine := lines[1]; secondLine != "Suffolk, arise. Welcome, Queen Margaret:" {
-		t.Errorf("Second line of file (%v) is incorrect got: %v want: %v", base, secondLine, "Suffolk, arise. Welcome, Queen Margaret:")
+	if secondLine := lines[1]; secondLine != "" {
+		t.Errorf("Second line of file (%v) is incorrect got: %v want: %v", base, secondLine, "")
+	}
+	if thirdLine := lines[2]; thirdLine != "Suffolk, arise. Welcome, Queen Margaret:" {
+		t.Errorf("First line of file (%v) is incorrect got: %v want: %v", base, thirdLine, "Suffolk, arise. Welcome, Queen Margaret:")
 	}
 	if lastLine := lines[len(lines)-1]; lastLine != "If sympathy of love unite our thoughts." {
 		t.Errorf("Last line of file (%v) is incorrect got: %v want: %v", base, lastLine, "If sympathy of love unite our thoughts.")

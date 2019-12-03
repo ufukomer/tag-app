@@ -45,6 +45,13 @@ func appendTags(root, tags, suffix string) error {
 			} else {
 				lines = append([]string{firstLine}, lines...)
 			}
+
+			// Add blank line into next-line of build tags.
+			if len(lines) == 1 {
+				lines = append(lines, "")
+			} else if lines[1] != "" {
+				lines = append([]string{firstLine, ""}, lines[1:]...)
+			}
 		}
 
 		if _, err = file.Seek(0, io.SeekStart); err != nil {
